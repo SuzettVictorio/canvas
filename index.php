@@ -9,228 +9,226 @@
     <style>
 
         canvas {
-            background-color: deepskyblue;
+            background-color: rgba(253,253,150,0.5);
             margin: auto;
         }
     </style>
 </head>
 
 <body>
-    <canvas id="mycanvas" width="700" height="600">
+    <canvas id="mycanvas"width="700" height="700">
         tu navegador no soporta canvas
     </canvas>
-
     <script type="text/javascript">
-    
-        function start() {
-            var canvas = document.getElementById('mycanvas'); 
-            ctx = canvas.getContext('2d');
-            paint(ctx);
-        }
+         var cv = document.getElementById('mycanvas');
+         var ctx = cv.getContext('2d');
+         
+        //circulo fondo
+        ctx.fillStyle = "rgba(148,0,211,0.5)";
+        ctx.beginPath();
+        ctx.arc(350,380,270,0,2*Math.PI);
+        ctx.fill();
+
+        //circulo cabeza
+        ctx.fillStyle = "rgba(253,221,202,1)";
+        ctx.beginPath();
+        ctx.arc(350,280,100,0,2*Math.PI);
+        ctx.fill();
+
+        //cuello
+        ctx.fillStyle = "rgb(253,221,202,1)";
+		ctx.fillRect(350,400,50,50);
         
-        window.addEventListener("load", start(),false);
+        ctx.fillStyle = "rgba(253,221,202,1)"
+		ctx.fillRect(320,350,60,50);
 
-        function paint() {
+        //arco del cuello
+        ctx.beginPath();
+        ctx.arc(340, 400, 30, 0, 1 * Math.PI);
+        ctx.fillStyle = "rgba(253,221,202,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            //Casa
-            ctx.fillStyle = "rgba(146,191,85,1)";
-            ctx.fillRect(150, 400, 250, 200);
+        //cabello cafe oscuro
+        ctx.beginPath();
+        ctx.arc(440, 370, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            //Techo de la casa
-            ctx.moveTo(150, 400);
-            ctx.lineTo(400, 400);
-            ctx.lineTo(275, 270);
-            ctx.fillStyle = "rgba(98,32,22,1)";
-            ctx.fill();
+        ctx.beginPath();
+        ctx.arc(450, 330, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            //Ventana
-            ctx.moveTo(180, 430)
-            ctx.lineTo(240, 430);
+        ctx.beginPath();
+        ctx.arc(450, 290, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.moveTo(180, 460)
-            ctx.lineTo(240, 460);
+        ctx.beginPath();
+        ctx.arc(450, 250, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.moveTo(180, 490)
-            ctx.lineTo(240, 490);
+        ctx.beginPath();
+        ctx.arc(430, 210, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.moveTo(180, 430)
-            ctx.lineTo(180, 490);
+        ctx.beginPath();
+        ctx.arc(400, 180, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath()
 
-            ctx.moveTo(240, 430)
-            ctx.lineTo(240, 490);
+        ctx.beginPath();
+        ctx.arc(370, 170, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.moveTo(210, 430)
-            ctx.lineTo(210, 490);
+        ctx.beginPath();
+        ctx.arc(340, 170, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            //Puerta
-            ctx.moveTo(290, 540)
-            ctx.lineTo(360, 540);
+        ctx.beginPath();
+        ctx.arc(310, 170, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.moveTo(290, 540)
-            ctx.lineTo(290, 600);
+        ctx.beginPath();
+        ctx.arc(280, 180, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.moveTo(325, 540)
-            ctx.lineTo(325, 600);
+        ctx.beginPath();
+        ctx.arc(260, 210, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.moveTo(360, 540)
-            ctx.lineTo(360, 600);
-            ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(240, 250, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.beginPath();
-            ctx.arc(310, 565, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-            ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(240, 290, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.beginPath();
-            ctx.arc(340, 565, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-            ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(245, 330, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            //Tronco del arbol
-            ctx.fillStyle = "rgba(102,67,41,1)";
-            ctx.fillRect(580, 400, 120, 200);
+        ctx.beginPath();
+        ctx.arc(260, 370, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            //Frondoso del arbol/hojas
-            ctx.beginPath();
-            ctx.arc(650, 230, 200, 0, 2 * Math.PI);
-            ctx.fillStyle = "green";
-            ctx.fill();
-            ctx.closePath();
+        //ojos
+        //ojo izquierdo
+        ctx.beginPath();
+        ctx.arc(320, 250, 10, 1, 0 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            //Naranjas
-            ctx.beginPath();
-            ctx.arc(650, 120, 20, 0, 2 * Math.PI);
-            ctx.fillStyle = "orange";
-            ctx.fill();
-            ctx.closePath();
+        //destello blanco ojo izquierdo
+        ctx.beginPath();
+        ctx.arc(320, 250, 5, 2, 1.5 * Math.PI);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.beginPath();
-            ctx.arc(550, 240, 20, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
+        //ojo derecho
+        ctx.beginPath();
+        ctx.arc(370, 250, 10, 1, 0 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.beginPath();
-            ctx.arc(630, 340, 20, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-            
-             //Nube de tormenta 1
-            ctx.beginPath();
-            ctx.arc(250, 120, 40, 0, 2 * Math.PI);
-            ctx.fillStyle = "grey";
-            ctx.fill();
-            ctx.closePath();
+        //destello blanco ojo derecho
+        ctx.beginPath();
+        ctx.arc(370, 250, 5, 2, 1.5 * Math.PI);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.beginPath();
-            ctx.arc(200, 80, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
+        //boca
+        ctx.beginPath();
+        ctx.arc(345, 320, 20, 0, 1 * Math.PI);
+        ctx.fillStyle = "rgba(108,59,42,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            ctx.beginPath();
-            ctx.arc(200, 150, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
+        ctx.beginPath();
+        ctx.arc(345, 330, 10, 0, 1 * Math.PI);
+        ctx.fillStyle = "rgba(255,203,219,1)";
+        ctx.fill();
+        ctx.closePath();
+        
+        //pecho
+        ctx.fillStyle = "rgb(200,0,0)";
+		ctx.fillRect(250,400,200,200);
 
-            ctx.beginPath();
-            ctx.arc(180, 120, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
+        //manga de la blusa
+        ctx.beginPath();
+		ctx.arc(250,410,50,1,0*Math.PI);
+		ctx.fill(); 
 
-            ctx.beginPath();
-            ctx.arc(150, 80, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
+        ctx.beginPath();
+		ctx.arc(450,410,50,0,2*Math.PI);
+		ctx.fill(); 
 
-            ctx.beginPath();
-            ctx.arc(150, 150, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
+        //brazos
+        //brazo izquierdo
+        ctx.fillStyle="rgb(253,221,202,1)";
+        ctx.fillRect(205,430,45,130);
+        //brazo derecho
+        ctx.fillStyle="rgb(253,221,202,1)";
+        ctx.fillRect(450,430,45,130);
 
-            ctx.beginPath();
-            ctx.arc(100, 120, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
+        //mano izquierda
+        ctx.beginPath();
+        ctx.arc(220, 580, 35, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(253,221,202,1)";
+        ctx.fill();
+        ctx.closePath();
+        //mano derecha
+        ctx.beginPath();
+        ctx.arc(480, 580, 35, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(253,221,202,1)";
+        ctx.fill();
+        ctx.closePath();
 
-            //Nube de tormenta 2
-            ctx.beginPath();
-            ctx.arc(450, 120, 40, 0, 2 * Math.PI);
-            ctx.fillStyle = "grey";
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(400, 80, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(400, 150, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(380, 120, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(350, 80, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(350, 150, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(300, 120, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-
-
-            //Nube blanca
-            ctx.beginPath();
-            ctx.arc(350, 120, 40, 0, 2 * Math.PI);
-            ctx.fillStyle = "white";
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(300, 80, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(300, 150, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(280, 120, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(250, 80, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(250, 150, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(200, 120, 40, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-
-        };
+        //pantalón semivisible
+        ctx.fillStyle="rgb(62,95,138)";
+        ctx.fillRect(250,600,200,50);
+        
+        //Texto avatar
+        ctx.fillStyle = "rgba(148,0,211,1)"
+        ctx.font="30px Arial";
+       
+        ctx.strokeStyle = "blue"
+        ctx.fillText("Avatar #suzettVictorio",200,50);
 
     </script>
+
 </body>
 
 </html>
