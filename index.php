@@ -9,225 +9,177 @@
     <style>
 
         canvas {
-            background-color: rgba(253,253,150,0.5);
+            background-color:cyan ;
             margin: auto;
         }
+
     </style>
+
 </head>
 
 <body>
-    <canvas id="mycanvas"width="700" height="700">
-        tu navegador no soporta canvas
+    <canvas id="mycanvas"width="500" height="500">
+    tu navegador no soporta canvas
     </canvas>
     <script type="text/javascript">
-         var cv = document.getElementById('mycanvas');
-         var ctx = cv.getContext('2d');
-         
-        //circulo fondo
-        ctx.fillStyle = "rgba(148,0,211,0.5)";
-        ctx.beginPath();
-        ctx.arc(350,380,270,0,2*Math.PI);
-        ctx.fill();
 
-        //circulo cabeza
-        ctx.fillStyle = "rgba(253,221,202,1)";
-        ctx.beginPath();
-        ctx.arc(350,280,100,0,2*Math.PI);
-        ctx.fill();
+    var cv = null;
+    var ctx = null;
+    var player1 = null;
+    var player2 =null;
+    var super_x= 240, super_y = 240;
+    var direction = 'right';
+    var score = 0;
+    var speed = 10;
 
-        //cuello
-        ctx.fillStyle = "rgb(253,221,202,1)";
-		ctx.fillRect(350,400,50,50);
+    
+
+    function start(){
+    cv = document.getElementById('mycanvas');
+    ctx = cv.getContext('2d');
+   
+    player1 = new Cuadrado(super_x,super_y,40,40,'red');
+    player2 = new Cuadrado(generateRandomInteger(500),generateRandomInteger(100),40,40,'yellow');
+        paint();  
+    }
+
+    function paint(){
+
+        window.requestAnimationFrame (paint);
         
-        ctx.fillStyle = "rgba(253,221,202,1)"
-		ctx.fillRect(320,350,60,50);
+        ctx.fillStyle = 'pink';
+        ctx.fillRect(0,0,500,500);
 
-        //arco del cuello
-        ctx.beginPath();
-        ctx.arc(340, 400, 30, 0, 1 * Math.PI);
-        ctx.fillStyle = "rgba(253,221,202,1)";
-        ctx.fill();
-        ctx.closePath();
+        ctx.fillStyle= rbgaRand();
+    
+        player1.c=rbgaRand();
+        player1.dibujar(ctx);
+        player2.dibujar(ctx);
 
-        //cabello cafe oscuro
-        ctx.beginPath();
-        ctx.arc(440, 370, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(450, 330, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(450, 290, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(450, 250, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(430, 210, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(400, 180, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath()
-
-        ctx.beginPath();
-        ctx.arc(370, 170, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(340, 170, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(310, 170, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(280, 180, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(260, 210, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(240, 250, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(240, 290, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(245, 330, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(260, 370, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        //ojos
-        //ojo izquierdo
-        ctx.beginPath();
-        ctx.arc(320, 250, 10, 1, 0 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        //destello blanco ojo izquierdo
-        ctx.beginPath();
-        ctx.arc(320, 250, 5, 2, 1.5 * Math.PI);
-        ctx.fillStyle = 'white';
-        ctx.fill();
-        ctx.closePath();
-
-        //ojo derecho
-        ctx.beginPath();
-        ctx.arc(370, 250, 10, 1, 0 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        //destello blanco ojo derecho
-        ctx.beginPath();
-        ctx.arc(370, 250, 5, 2, 1.5 * Math.PI);
-        ctx.fillStyle = 'white';
-        ctx.fill();
-        ctx.closePath();
-
-        //boca
-        ctx.beginPath();
-        ctx.arc(345, 320, 20, 0, 1 * Math.PI);
-        ctx.fillStyle = "rgba(108,59,42,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.beginPath();
-        ctx.arc(345, 330, 10, 0, 1 * Math.PI);
-        ctx.fillStyle = "rgba(255,203,219,1)";
-        ctx.fill();
-        ctx.closePath();
-        
-        //pecho
-        ctx.fillStyle = "rgb(200,0,0)";
-		ctx.fillRect(250,400,200,200);
-
-        //manga de la blusa
-        ctx.beginPath();
-		ctx.arc(250,410,50,1,0*Math.PI);
-		ctx.fill(); 
-
-        ctx.beginPath();
-		ctx.arc(450,410,50,0,2*Math.PI);
-		ctx.fill(); 
-
-        //brazos
-        //brazo izquierdo
-        ctx.fillStyle="rgb(253,221,202,1)";
-        ctx.fillRect(205,430,45,130);
-        //brazo derecho
-        ctx.fillStyle="rgb(253,221,202,1)";
-        ctx.fillRect(450,430,45,130);
-
-        //mano izquierda
-        ctx.beginPath();
-        ctx.arc(220, 580, 35, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(253,221,202,1)";
-        ctx.fill();
-        ctx.closePath();
-        //mano derecha
-        ctx.beginPath();
-        ctx.arc(480, 580, 35, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(253,221,202,1)";
-        ctx.fill();
-        ctx.closePath();
-
-        //pantalón semivisible
-        ctx.fillStyle="rgb(62,95,138)";
-        ctx.fillRect(250,600,200,50);
-        
-        //Texto avatar
-        ctx.fillStyle = "rgba(148,0,211,1)"
-        ctx.font="30px Arial";
+        ctx.fillStyle='black';
+        ctx.fillText("Score:"+score,20,20);
        
-        ctx.strokeStyle = "blue"
-        ctx.fillText("Avatar #suzettVictorio",200,50);
+        update();
+    }
 
-    </script>
+    function update(){
+
+        if(direction =='right'){
+            player1.x +=speed;
+            if(player1.x>=500){
+                player1.x=0;
+            } 
+        }
+        if(direction == 'left'){
+            player1.y-=speed;
+                if(player1.x<0){
+                     player1.x=500;
+                }
+        }
+
+        if(direction == 'down'){
+            player1.x +=speed;
+            if(player1.x>500){
+                player1.x=0;
+            } 
+        }
+
+        if(direction == 'up'){
+            player1.y-=speed;
+                if(player1.x<0){
+                    player1.x=500;
+                }
+        }
+
+        if(player1.se_tocan(player2)){
+            player2.x=generateRandomInteger(500);
+            player2.y=generateRandomInteger(500);
+
+            score+=10;
+            speed+=5;
+
+        }
+    }
+
+    document.addEventListener('keydown', function(e){
+        console.log(e)
+        //arriba
+        if(e.keyCode==87 || e.keyCode ==38){
+            direction='up';
+        }
+        //abajo
+        if(e.keyCode==83 || e.keyCode ==40){
+            direction='down';
+        }
+        //izquierda
+        if(e.keyCode==65 || e.keyCode ==37){
+            direction='left';
+        }
+        //derechaa
+        if(e.keyCode==68 || e.keyCode ==39){
+            direction='right';
+        }
+      
+       
+    })
+
+    window.addEventListener('load',start)
+
+    window.requestAnimationFrame = (function () {
+    return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        function (callback) {
+            window.setTimeout(callback, 17);
+        };
+    }());
+
+    function Cuadrado(x,y,w,h,c){
+        this.x=x;
+        this.y=y;
+        this.w=w;
+        this.h=h;
+        this.c=c;
+
+        this.dibujar = function(ctx){
+        ctx.fillStyle = this.c;
+        ctx.fillRect(this.x,this.y,this.w,this.h);
+        ctx.strokeRect(this.x,this.y,this.w,this.h);
+        }
+
+        this.se_tocan = function (target) { 
+
+        if(this.x < target.x + target.w &&
+
+        this.x + this.w > target.x && 
+
+        this.y < target.y + target.h && 
+
+        this.y + this.h > target.y)
+
+        {
+
+        return true;  
+
+        }  
+
+        };
+
+    }
+
+    function rbgaRand() {
+        var o = Math.round, r = Math.random, s = 255;
+        return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+    }
+
+    function generateRandomInteger(max) {
+    return Math.floor(Math.random() * max) + 1;
+    }
+
+
+
+
+</script>
 
 </body>
 
