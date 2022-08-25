@@ -30,16 +30,23 @@
     var super_x= 240, super_y = 240;
     var direction = 'right';
     var score = 0;
-    var speed = 10;
+    var speed = 3;
+    var aux=speed;
+    var pausa = false;
 
-    
+    var bloques = new Array(4);
 
     function start(){
-    cv = document.getElementById('mycanvas');
-    ctx = cv.getContext('2d');
-   
-    player1 = new Cuadrado(super_x,super_y,40,40,'red');
-    player2 = new Cuadrado(generateRandomInteger(500),generateRandomInteger(100),40,40,'yellow');
+        cv = document.getElementById('mycanvas');
+        ctx = cv.getContext('2d');
+    
+        player1 = new Cuadrado(super_x,super_y,40,40,'red');
+        player2 = new Cuadrado(generateRandomIntegerInRange(500),generateRandomIntegerInRange(100),40,40,'yellow');
+
+        bloques[0]= new Cuadrado(100,50,120,30);
+        bloques[1]= new Cuadrado(50,300,30,120);
+        bloques[2]= new Cuadrado(400,150,30,120);
+        bloques[3]= new Cuadrado(200,400,120,30);
         paint();  
     }
 
@@ -57,68 +64,94 @@
         player2.dibujar(ctx);
 
         ctx.fillStyle='black';
-        ctx.fillText("Score:"+score,20,20);
+        ctx.fillText("Score :"+score+"  Speed :"+speed,20,20)
+     
+        if(!pausa){
+            update();
+        }else{
+            ctx.fillStyle='rgb(0,0,0,0.5)';
+            ctx.fillRect(0,0,500,500);
+
+            ctx.fillStyle='white';
+            ctx.font ="30px Arial"
+            ctx.fillText("P A U S E",230,230);
+            
+        }
+
+        ctx.fillStyle='red';
+        for(var i=0;i<bloques.length;i++){
+            bloques[i].dibujar(ctx);
+        }
        
-        update();
     }
 
     function update(){
 
-        if(direction =='right'){
-            player1.x +=speed;
-            if(player1.x>=500){
-                player1.x=0;
-            } 
-        }
-        if(direction == 'left'){
-            player1.y-=speed;
-                if(player1.x<0){
-                     player1.x=500;
+            if(direction == 'right'){
+                 player1.x +=speed
+                if(player1.x >= 500){
+                    player1.x = 0;
                 }
-        }
-
-        if(direction == 'down'){
-            player1.x +=speed;
-            if(player1.x>500){
-                player1.x=0;
-            } 
-        }
-
-        if(direction == 'up'){
-            player1.y-=speed;
-                if(player1.x<0){
-                    player1.x=500;
+            }
+            if(direction == 'left'){
+                 player1.x -=speed;
+                if(player1.x < 0){
+                    player1.x = 50;
                 }
-        }
+            }
+            if(direction == 'down'){
+                player1.y +=speed;
+                 if(player1.y >= 500){
+                    player1.y = 0;
+                }
+            }
+            if(direction == 'up'){
+                player1.y -=speed;
+                 if(player1.y <0){
+                    player1.y = 500;
+                }
+            }
+            if(player1.se_tocan(player2)){
+                player2.x=generateRandomIntegerInRange(500);
+                player2.y=generateRandomIntegerInRange(500);
 
-        if(player1.se_tocan(player2)){
-            player2.x=generateRandomInteger(500);
-            player2.y=generateRandomInteger(500);
+                score +=5;
+                speed +=1;
+            }
 
-            score+=10;
-            speed+=5;
-
-        }
+            if(player1.se_tocan(bloques[0])|| player1.se_tocan(bloques[1]) || 
+                player1.se_tocan(bloques[2]) ||
+                player1.se_tocan(bloques[3])){
+                    score-=5;
+                    speed-=1;
+                    if(speed==0){
+                        player1.x =player2.super_x;
+                        player1.y =player2.super_y;
+                        speed=aux;
+                    }
+            }
     }
 
     document.addEventListener('keydown', function(e){
-        console.log(e)
-        //arriba
-        if(e.keyCode==87 || e.keyCode ==38){
-            direction='up';
-        }
-        //abajo
-        if(e.keyCode==83 || e.keyCode ==40){
+        if(e.keyCode == 87 || e.keyCode == 38){
+                direction='up';
+
+            }
+        // abajo
+        if(e.keyCode == 83 || e.keyCode == 40){
             direction='down';
         }
-        //izquierda
-        if(e.keyCode==65 || e.keyCode ==37){
+        // derecha
+        if(e.keyCode == 65 || e.keyCode == 37){
             direction='left';
         }
-        //derechaa
-        if(e.keyCode==68 || e.keyCode ==39){
-            direction='right';
+        //abajo
+        if(e.keyCode == 68 || e.keyCode == 39){
+                direction='right';
         }
+        if(e.keyCode == 32){
+            pausa =(pausa)? false : true;
+}
       
        
     })
@@ -173,10 +206,13 @@
     }
 
     function generateRandomInteger(max) {
-    return Math.floor(Math.random() * max) + 1;
+        return Math.floor(Math.random() * max) + 1;
     }
 
-
+    // Generate a random number between 2 and 10, including both 2 and 10
+    function generateRandomIntegerInRange( max) {
+        return Math.floor(Math.random() * (max  + 1));
+    }
 
 
 </script>
