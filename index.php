@@ -21,6 +21,8 @@
     <canvas id="mycanvas"width="500" height="500">
     tu navegador no soporta canvas
     </canvas>
+
+    <img src="floresita.png" id="imagen" style="display:none;">
     <script type="text/javascript">
 
     var cv = null;
@@ -33,8 +35,13 @@
     var speed = 3;
     var aux=speed;
     var pausa = false;
-
     var bloques = new Array(4);
+
+    var bee = new Image();
+    var floresita = new Image();
+    var wall = new Image();
+    var sonido1 = new Audio();
+    
 
     function start(){
         cv = document.getElementById('mycanvas');
@@ -42,6 +49,11 @@
     
         player1 = new Cuadrado(super_x,super_y,40,40,'red');
         player2 = new Cuadrado(generateRandomIntegerInRange(500),generateRandomIntegerInRange(100),40,40,'yellow');
+
+        bee.src = 'abeja.png';
+        floresita.src = 'floresita.png';
+        wall.src = 'wall.png';
+        sonido1.src = 'bee-effects.mp3';
 
         bloques[0]= new Cuadrado(100,50,120,30);
         bloques[1]= new Cuadrado(50,300,30,120);
@@ -60,8 +72,13 @@
         ctx.fillStyle= rbgaRand();
     
         player1.c=rbgaRand();
-        player1.dibujar(ctx);
-        player2.dibujar(ctx);
+        //player1.dibujar(ctx);
+        //player2.dibujar(ctx);
+        
+        ctx.drawImage(bee,player1.x,player1.y,40,40);
+        ctx.drawImage(floresita,player2.x,player2.y,40,40);
+
+        ctx.drawImage(wall,bloques.x,bloques.y,30,300);
 
         ctx.fillStyle='black';
         ctx.fillText("Score :"+score+"  Speed :"+speed,20,20)
@@ -117,18 +134,28 @@
 
                 score +=5;
                 speed +=1;
+                sonido1.play();
             }
 
             if(player1.se_tocan(bloques[0])|| player1.se_tocan(bloques[1]) || 
                 player1.se_tocan(bloques[2]) ||
                 player1.se_tocan(bloques[3])){
-                    score-=5;
-                    speed-=1;
-                    if(speed==0){
-                        player1.x =player2.super_x;
-                        player1.y =player2.super_y;
-                        speed=aux;
-                    }
+            if(direction == 'right'){
+                player1.x -=speed
+                
+            }
+            if(direction == 'left'){
+                 player1.x +=speed;
+                
+            }
+            if(direction == 'down'){
+                player1.y -=speed;
+                
+            }
+            if(direction == 'up'){
+                player1.y +=speed;
+                
+            }
             }
     }
 
